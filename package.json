@@ -1,0 +1,10 @@
+JSON
+
+{
+  "name": "mein-website-projekt",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo Build erfolgreich"
+  }
+}
