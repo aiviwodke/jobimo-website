@@ -1,3 +1,10 @@
+// Supabase-Verbindung
+const SUPABASE_URL = 'https://obwqsmxxcrjkunxqyxbc.supabase.co/rest/v1/';
+const SUPABASE_ANON_KEY = 'sb_publishable_n1sBUQWKqjO7QJr7KHn8xA_ufYIMBiF';
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
 // JOBIMO MVP – illustrative sample listings only. No live job feed is connected.
 const sampleJobs = [
   {id:1,title:'Barista / Café-Aushilfe',company:'Café Küstenkind (Beispiel)',city:'Rostock',district:'Landkreis Rostock',pay:'14,50 € / Std.',hours:'Wochenende',type:'Minijob',industry:'Gastronomie',category:'Café & Barista',terms:['café','kaffee','barista','service','getränke','minijob','aushilfe'],direct:['café','kaffee','barista']},
