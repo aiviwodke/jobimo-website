@@ -20,6 +20,51 @@ const sampleJobs = [
   {id:11,title:'Aushilfe im Café',company:'Kleine Auszeit (Beispiel)',city:'Bergen auf Rügen',district:'Vorpommern-Rügen',pay:'14,00 € / Std.',hours:'Saison / Wochenende',type:'Minijob',industry:'Gastronomie',category:'Café & Barista',terms:['café','kaffee','service','minijob','aushilfe'],direct:['café']},
   {id:12,title:'Werkstudent:in Gästeservice',company:'Cityhotel (Beispiel)',city:'Greifswald',district:'Vorpommern-Greifswald',pay:'15,00 € / Std.',hours:'Bis 20 Std./Woche',type:'Werkstudent',industry:'Hotel',category:'Hotel & Rezeption',terms:['hotel','rezeption','service','werkstudent'],direct:['hotel','rezeption']}
 ];
+let jobsForSearch = sampleJobs;
+
+// Echte, freigegebene Stellenangebote aus Supabase laden
+async function loadLiveJobs() {
+  const { data, error } = await supabaseClient
+    .from('jobs')
+    .select('*, employers(name), categories(name)')
+    .eq('status', 'active')
+    .or(`published_at.is.null,published_at.lte.${new Date().toISOString()}`)
+    .or(`expires_at.is.null,expires_at.gt.${new Date().toISOString()}`);
+
+  if (error) {
+    console.error('Supabase-Fehler:', error.message);
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    console.log('Noch keine aktiven Stellenangebote vorhanden.');
+    return;
+  }
+
+  jobsForSearch = data.map(job => {
+    const category = job.categories?.name || job.industry || 'Weitere Jobs';
+    const tags = job.activity_tags || [];
+
+    return {
+      id: job.id,
+      title: job.title,
+      company: job.employers?.name || 'Arbeitgeber',
+      city: job.city,
+      pay: job.hourly_wage_min
+        ? `${Number(job.hourly_wage_min).toFixed(2).replace('.', ',')} / Std.`
+        : 'Keine Angabe',
+      hours: job.working_time || 'Keine Angabe',
+      type: job.employment_type === 'minijob'
+        ? 'Minijob'
+        : job.employment_type,
+      industry: job.industry || 'Sonstiges',
+      category: category,
+      terms: [...tags, job.description || '', job.title, job.city],
+      direct: [...tags, job.title],
+      isLive: true
+    };
+  });
+}
 const synonyms = {
   'café':['café','kaffee','barista'], 'barista':['barista','kaffee','café'], 'hotel':['hotel','rezeption','frühstück'],
   'rezeption':['rezeption','empfang','hotel'], 'service':['service','kellner','restaurant','frühstück'], 'kellner':['kellner','restaurant','service'],
@@ -45,7 +90,7 @@ function makeCard(job, similar=false){
 }
 function runSearch(){
   const q=$('query').value.trim(); const city=$('city').value; const type=$('typeFilter').value; const industry=$('industryFilter').value; const parsed=classifyQuery(q);
-  let candidates=sampleJobs.filter(j=>(!city||j.city===city)&&(!type||j.type===type)&&(!industry||j.industry===industry));
+  let candidates=jobsForSearch.filter(j=>(!city||j.city===city)&&(!type||j.type===type)&&(!industry||j.industry===industry));
   let direct=[],similar=[];
   if(!q){direct=candidates;}
   else {
@@ -71,3 +116,4 @@ $('searchForm').addEventListener('submit',e=>{e.preventDefault();runSearch();$('
 $('typeFilter').addEventListener('change',runSearch); $('industryFilter').addEventListener('change',runSearch); $('city').addEventListener('change',runSearch);
 document.querySelectorAll('[data-query]').forEach(btn=>btn.addEventListener('click',()=>{$('query').value=btn.dataset.query;runSearch();$('results').scrollIntoView({behavior:'smooth'});}));
 runSearch();
+loadLiveJobs().then(runSearch);
