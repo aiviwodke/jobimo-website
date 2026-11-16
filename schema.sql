@@ -1,4 +1,4 @@
--- JOBORA initial Supabase schema (PostgreSQL)
+-- JOBIMO initial Supabase schema (PostgreSQL)
 -- Run in Supabase SQL Editor only after creating a project.
 -- Public visitors can read approved, active job listings. No public writes are allowed.
 

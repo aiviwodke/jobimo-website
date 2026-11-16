@@ -1,4 +1,4 @@
-// JOBORA MVP – illustrative sample listings only. No live job feed is connected.
+// JOBIMO MVP – illustrative sample listings only. No live job feed is connected.
 const sampleJobs = [
   {id:1,title:'Barista / Café-Aushilfe',company:'Café Küstenkind (Beispiel)',city:'Rostock',district:'Landkreis Rostock',pay:'14,50 € / Std.',hours:'Wochenende',type:'Minijob',industry:'Gastronomie',category:'Café & Barista',terms:['café','kaffee','barista','service','getränke','minijob','aushilfe'],direct:['café','kaffee','barista']},
   {id:2,title:'Servicekraft im Café',company:'Kaffeekontor (Beispiel)',city:'Rostock',district:'Landkreis Rostock',pay:'14,00 € / Std.',hours:'Flexible Zeiten',type:'Minijob',industry:'Gastronomie',category:'Café & Barista',terms:['café','service','bedienung','minijob','aushilfe'],direct:['café']},

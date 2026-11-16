@@ -1,4 +1,4 @@
-# JOBORA – MVP-Prototyp
+# JOBIMO – MVP-Prototyp
 
 Ein statischer, mobilfreundlicher Website-Prototyp für eine KI-gestützte Nebenjob-Suche in Mecklenburg-Vorpommern.
 
