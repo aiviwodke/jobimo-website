@@ -4,55 +4,61 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#FFD447" />
-  <meta name="description" content="JOBIMO – finde passende Nebenjobs und Minijobs in Mecklenburg-Vorpommern." />
-  <title>JOBIMO – Dein Job. Dein Ding.</title>
+  <meta name="description" content="JOBIMO – finde Minijobs und Studentenjobs in Mecklenburg-Vorpommern. Dein Nebenjob in deiner Nähe." />
+  <title>JOBIMO – Finde deinen richtigen Nebenjob</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="topbar">
     <a class="brand" href="#top" aria-label="JOBIMO Startseite"><span class="brand-mark">j</span><span>JOBIMO<span class="brand-dot">.</span></span></a>
-    <nav><a href="#so-funktionierts">So funktioniert's</a><a href="#branchen">Branchen</a><a class="nav-cta" href="#arbeitgeber">Für Arbeitgeber ↗</a></nav>
+    <nav><a href="#jobs">Jobs entdecken</a><a href="#branchen">Branchen</a><a class="nav-cta" href="#arbeitgeber">Für Arbeitgeber ↗</a></nav>
   </header>
   <main id="top">
     <section class="hero">
       <div class="hero-copy">
-        <div class="eyebrow"><span class="sparkle">✳</span> DIE JOBSUCHE, DIE DICH VERSTEHT</div>
-        <h1>Finde den Job.<br><span>Der zu dir passt.</span></h1>
-        <p class="hero-text">Weniger Suchen. Mehr passende Jobs. Entdecke Minijobs und Nebenjobs in Mecklenburg-Vorpommern – ohne endlose Listen voller Zufallstreffer.</p>
-        <div class="hero-pills"><span>✦ Für deinen Alltag</span><span>↗ Direkt bewerben</span><span>♡ Kostenlos suchen</span></div>
+        <div class="eyebrow"><span class="sparkle">✳</span> DEINE PLATTFORM FÜR NEBENJOBS</div>
+        <h1>Finde deinen<br><span>richtigen Nebenjob.</span></h1>
+        <p class="hero-text">Ob neben dem Studium oder als Minijob: Entdecke passende Möglichkeiten in deiner Nähe. Einfach suchen, vergleichen und direkt beim Arbeitgeber bewerben.</p>
+        <div class="hero-pills"><span>✦ Minijobs</span><span>↗ Studentenjobs</span><span>♡ Kostenlos suchen</span></div>
       </div>
       <div class="hero-art" aria-hidden="true">
         <div class="blob blob-yellow"></div><div class="blob blob-orange"></div><div class="blob blob-green"></div>
-        <div class="art-card"><div class="art-card-top"><span class="mini-logo">j.</span><span class="art-status">MATCH GEFUNDEN</span></div><div class="art-icon">☕</div><div class="art-title">Dein nächster<br>Lieblingsjob?</div><div class="art-line"></div><div class="art-footer"><span>Gute Vibes. Guter Job.</span><span>✳</span></div></div>
-        <div class="floating-note note-one">passt zu dir <b>✓</b></div><div class="floating-note note-two">100% Nebenjob-Vibes ✦</div>
+        <div class="art-card"><div class="art-card-top"><span class="mini-logo">j.</span><span class="art-status">DEIN NÄCHSTER JOB</span></div><div class="art-icon">✦</div><div class="art-title">Mehr Zeit für<br>dein Leben.</div><div class="art-line"></div><div class="art-footer"><span>Der Nebenjob, der zu dir passt.</span><span>✳</span></div></div>
+        <div class="floating-note note-one">Minijob <b>✓</b></div><div class="floating-note note-two">Studentenjob ✦</div>
       </div>
     </section>
 
     <section class="search-panel" aria-label="Jobsuche">
-      <div class="search-heading"><div><span class="eyebrow">LOS GEHT'S</span><h2>Was suchst du?</h2></div><span class="search-hint">Dein nächster Job ist nur eine Suche entfernt.</span></div>
+      <div class="search-heading"><div><span class="eyebrow">LOS GEHT'S</span><h2>Was suchst du?</h2></div><span class="search-hint">Dein nächster Nebenjob ist nur eine Suche entfernt.</span></div>
       <form id="searchForm" class="search-grid">
-        <label class="field field-wide"><span>JOB ODER TÄTIGKEIT</span><div class="input-wrap"><span>⌕</span><input id="query" type="search" placeholder="z. B. Barista, Service, Hotel …" value="" /></div></label>
+        <label class="field field-wide"><span>JOB ODER TÄTIGKEIT</span><div class="input-wrap"><span>⌕</span><input id="query" type="search" placeholder="z. B. Service, Verkauf, Werkstudent …" /></div></label>
         <label class="field"><span>WO?</span><div class="input-wrap"><span>⌖</span><select id="city"><option value="">Ganz Mecklenburg-Vorpommern</option><option>Rostock</option><option>Schwerin</option><option>Wismar</option><option>Stralsund</option><option>Greifswald</option><option>Neubrandenburg</option><option>Güstrow</option><option>Waren (Müritz)</option><option>Ribnitz-Damgarten</option><option>Neustrelitz</option><option>Parchim</option><option>Bergen auf Rügen</option></select></div></label>
         <button class="search-button" type="submit">Jobs finden <span>↗</span></button>
       </form>
-      <div class="quick-search"><span>Beliebt:</span><button data-query="Café">Café</button><button data-query="Hotel">Hotel</button><button data-query="Service">Service</button><button data-query="Verkauf">Verkauf</button><button data-query="Wochenende">Wochenende</button></div>
+      <div class="quick-search"><span>Beliebt:</span><button type="button" data-query="Gastronomie">Gastronomie</button><button type="button" data-query="Verkauf">Verkauf</button><button type="button" data-query="Wochenende">Wochenende</button><button type="button" data-query="Werkstudent">Werkstudent</button></div>
     </section>
 
-    <section class="results-section" id="results">
-      <div class="results-top"><div><span class="eyebrow">DEINE JOBAUSWAHL</span><h2 id="resultsTitle">Entdecke passende Jobs<span class="title-dot">.</span></h2><p id="resultsSub">Direkte Treffer zuerst. Ähnliche Jobs separat.</p></div><div class="filters"><label><span>Beschäftigung</span><select id="typeFilter"><option value="">Alle Beschäftigungen</option><option>Minijob</option><option>Werkstudent</option><option>Teilzeit</option></select></label><label><span>Branche</span><select id="industryFilter"><option value="">Alle Branchen</option><option value="Gastronomie">Gastronomie</option><option value="Hotel">Hotel</option><option value="Einzelhandel">Einzelhandel</option><option value="Events">Events</option></select></label></div></div>
-      <div class="demo-notice">ⓘ Vorschau mit Beispieldaten – die Anzeigen sind nicht echt und aktuell noch nicht bewerbbar.</div>
-      <div class="result-group"><div class="group-heading"><div><span class="group-tag direct-tag">01 / DIREKT PASSEND</span><h3>Genau das, wonach du suchst</h3></div><span class="count" id="directCount">0 Jobs</span></div><div class="job-grid" id="directJobs"></div><div class="empty-state" id="directEmpty" hidden>Keine direkten Treffer in dieser Auswahl. Ändere den Suchbegriff oder den Standort.</div></div>
-      <div class="result-group similar-group"><div class="group-heading"><div><span class="group-tag similar-tag">02 / ÄHNLICHE BRANCHEN</span><h3>Vielleicht auch interessant</h3><p>Verwandte Tätigkeiten, klar getrennt von direkten Treffern.</p></div><span class="count" id="similarCount">0 Alternativen</span></div><div class="job-grid" id="similarJobs"></div><div class="empty-state" id="similarEmpty" hidden>Keine ähnlichen Stellen für diese Auswahl.</div></div>
+    <section class="category-shortcuts" aria-label="Jobarten">
+      <button class="category-tile mini-tile" type="button" data-type="Minijob"><span class="tile-icon">✦</span><span><b>Minijobs</b><small>Flexible Jobs für deinen Alltag</small></span><span class="tile-arrow">↗</span></button>
+      <button class="category-tile student-tile" type="button" data-type="Studentenjob"><span class="tile-icon">⌘</span><span><b>Studentenjobs</b><small>Arbeiten neben dem Studium</small></span><span class="tile-arrow">↗</span></button>
     </section>
 
-    <section class="how-section" id="so-funktionierts"><div class="section-intro"><span class="eyebrow">EINFACHER GEHT'S NICHT</span><h2>Weniger scrollen.<br><span>Mehr Möglichkeiten.</span></h2></div><div class="steps"><article><div class="step-icon lilac">⌕</div><span class="step-no">01</span><h3>Such, wie du denkst.</h3><p>Schreib einfach rein, was du suchst. Jobimo ordnet deine Anfrage nach Tätigkeit und Branche.</p></article><article><div class="step-icon peach">✳</div><span class="step-no">02</span><h3>Finde deinen Match.</h3><p>Direkte Treffer stehen oben. Ähnliche Jobs erscheinen extra – damit nichts durcheinandergeht.</p></article><article><div class="step-icon mint">↗</div><span class="step-no">03</span><h3>Direkt bewerben.</h3><p>Wenn du deinen Job gefunden hast, geht's direkt zur Originalanzeige des Arbeitgebers.</p></article></div></section>
+    <section class="results-section" id="jobs">
+      <div class="results-top"><div><span class="eyebrow">DEINE JOBAUSWAHL</span><h2 id="resultsTitle">Entdecke Minijobs & Studentenjobs<span class="title-dot">.</span></h2><p id="resultsSub">Finde Möglichkeiten in Mecklenburg-Vorpommern.</p></div><div class="filters"><label><span>Jobart</span><select id="typeFilter"><option value="">Alle Jobarten</option><option value="Minijob">Minijob</option><option value="Studentenjob">Studentenjob</option></select></label><label><span>Branche</span><select id="industryFilter"><option value="">Alle Branchen</option><option value="Gastronomie">Gastronomie</option><option value="Hotel">Hotel</option><option value="Einzelhandel">Einzelhandel</option><option value="Events">Events</option><option value="Büro">Büro & Verwaltung</option><option value="Logistik">Logistik</option></select></label></div></div>
+      <div class="demo-notice">ⓘ Aktuell siehst du Beispieldaten zur Vorschau. Diese Stellen sind nicht echt und noch nicht bewerbbar.</div>
+      <div class="result-group"><div class="group-heading"><div><span class="group-tag direct-tag">JOBIMO JOBS</span><h3>Passende Nebenjobs für dich</h3></div><span class="count" id="directCount">0 Jobs</span></div><div class="job-grid" id="directJobs"></div><div class="empty-state" id="directEmpty" hidden>Keine passenden Stellen gefunden. Ändere deinen Suchbegriff oder den Standort.</div></div>
+    </section>
 
-    <section class="industry-section" id="branchen"><div class="section-intro"><span class="eyebrow">DEIN STARTPUNKT</span><h2>Was darf's sein?</h2><p>Wir starten mit den Branchen, in denen Nebenjobs besonders gefragt sind.</p></div><div class="industry-grid"><button data-query="Café" class="industry-card cafe"><span>☕</span><b>Café & Barista</b><small>Kaffee, Kuchen, Lieblingsorte</small></button><button data-query="Hotel" class="industry-card hotel"><span>🛎️</span><b>Hotel & Rezeption</b><small>Gastfreundschaft erleben</small></button><button data-query="Service" class="industry-card service"><span>🍽️</span><b>Restaurant & Service</b><small>Menschen, Genuss, Teamwork</small></button><button data-query="Verkauf" class="industry-card retail"><span>🛍️</span><b>Verkauf & Handel</b><small>Abwechslung im Alltag</small></button></div></section>
+    <section class="how-section" id="so-funktionierts"><div class="section-intro"><span class="eyebrow">EINFACHER GEHT'S NICHT</span><h2>Weniger suchen.<br><span>Mehr Möglichkeiten.</span></h2></div><div class="steps"><article><div class="step-icon lilac">⌕</div><span class="step-no">01</span><h3>Finde passende Jobs.</h3><p>Suche nach Tätigkeit, Jobart und Ort – ganz unkompliziert.</p></article><article><div class="step-icon peach">✳</div><span class="step-no">02</span><h3>Vergleiche deine Optionen.</h3><p>Sieh auf einen Blick, welche Aufgaben, Arbeitszeiten und Branchen zu dir passen.</p></article><article><div class="step-icon mint">↗</div><span class="step-no">03</span><h3>Bewirb dich direkt.</h3><p>Der Weg zur Bewerbung führt dich zur Originalanzeige oder zum Arbeitgeber.</p></article></div></section>
 
-    <section class="employer-section" id="arbeitgeber"><div><span class="eyebrow">DU SUCHST VERSTÄRKUNG?</span><h2>Gute Leute verdienen<br><span>gute Sichtbarkeit.</span></h2><p>Du hast einen Nebenjob zu vergeben? Bald kannst du deine Anzeige direkt bei JOBIMO einreichen.</p></div><a class="employer-button" href="#arbeitgeber">Interesse als Arbeitgeber? <span>↗</span></a></section>
+    <section class="industry-section" id="branchen"><div class="section-intro"><span class="eyebrow">DEIN STARTPUNKT</span><h2>Dein Bereich. Dein Nebenjob.</h2><p>Entdecke beliebte Branchen für Minijobs und Studentenjobs.</p></div><div class="industry-grid"><button type="button" data-query="Gastronomie" class="industry-card cafe"><span>☕</span><b>Gastronomie</b><small>Café, Bar und Restaurant</small></button><button type="button" data-query="Hotel" class="industry-card hotel"><span>🛎️</span><b>Hotellerie</b><small>Empfang und Gästeservice</small></button><button type="button" data-query="Verkauf" class="industry-card service"><span>🛍️</span><b>Einzelhandel</b><small>Shop, Kasse und Verkauf</small></button><button type="button" data-query="Büro" class="industry-card retail"><span>💻</span><b>Büro & Verwaltung</b><small>Organisation und Support</small></button></div></section>
+
+    <section class="employer-section" id="arbeitgeber"><div><span class="eyebrow">DU SUCHST VERSTÄRKUNG?</span><h2>Finde passende<br><span>Aushilfen & Studierende.</span></h2><p>Du möchtest einen Minijob oder Studentenjob anbieten? Jobimo soll auch Arbeitgeber und passende Bewerber unkompliziert zusammenbringen.</p></div><a class="employer-button" href="mailto:hallo@jobimo.de?subject=Interesse%20an%20einer%20Stellenanzeige">Interesse als Arbeitgeber? <span>↗</span></a></section>
   </main>
-  <footer><a class="brand footer-brand" href="#top"><span class="brand-mark">j</span><span>JOBIMO<span class="brand-dot">.</span></span></a><span>Dein Job. Dein Ding.</span><span class="footer-demo">Prototyp – noch kein Live-Jobportal</span></footer>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <footer><a class="brand footer-brand" href="#top"><span class="brand-mark">j</span><span>JOBIMO<span class="brand-dot">.</span></span></a><span>Finde deinen richtigen Nebenjob.</span><span class="footer-demo">Prototyp – Beispieldaten, noch kein Live-Jobportal</span></footer>
   <script src="app.js"></script>
 </body>
 </html>

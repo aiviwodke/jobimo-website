@@ -1,5 +1,6 @@
--- JOBIMO initial Supabase schema (PostgreSQL)
--- Run in Supabase SQL Editor only after creating a project.
+-- JOBIMO Supabase schema (PostgreSQL)
+-- Fokus: ausschließlich Minijobs und Studentenjobs.
+-- Für eine NEUE Datenbank im Supabase SQL Editor ausführen.
 -- Public visitors can read approved, active job listings. No public writes are allowed.
 
 create extension if not exists pgcrypto;
@@ -49,7 +50,7 @@ create table if not exists public.jobs (
   title text not null,
   description text,
   employment_type text not null default 'minijob'
-    check (employment_type in ('minijob','werkstudent','teilzeit','vollzeit','praktikum','other')),
+    check (employment_type in ('minijob','werkstudent')),
   industry text,
   activity_tags text[] not null default '{}',
   city text not null,

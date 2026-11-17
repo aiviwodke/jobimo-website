@@ -1,31 +1,43 @@
-# JOBIMO – MVP-Prototyp
+# JOBIMO – Nebenjob-Plattform (MVP)
 
-Ein statischer, mobilfreundlicher Website-Prototyp für eine KI-gestützte Nebenjob-Suche in Mecklenburg-Vorpommern.
+**Positionierung:** „Finde deinen richtigen Nebenjob.“  
+**Jobarten:** Minijobs und Studentenjobs (gleichberechtigt).  
+**Startregion:** Mecklenburg-Vorpommern; später schrittweise deutschlandweit.
 
-## Lokal starten
+## Inhalt
+
+- `index.html` – Startseite und Suchoberfläche
+- `styles.css` – Gestaltung und responsive Darstellung
+- `app.js` – Such- und Filterlogik mit ausdrücklich gekennzeichneten Beispieldaten
+- `schema.sql` – Supabase-Grundschema für eine neue Datenbank
+
+## Lokal testen
+
+ZIP entpacken und `index.html` im Browser öffnen. Es ist kein Build-Schritt erforderlich.
+
+## Funktionen im aktuellen Prototyp
+
+- Gleichberechtigte Auswahl von Minijobs und Studentenjobs
+- Suche nach Tätigkeit, Stichwort und Stadt
+- Filter nach Jobart und Branche
+- Regionale Vorauswahl für Städte in Mecklenburg-Vorpommern
+- Responsive Darstellung für Smartphone und Desktop
+
+## Wichtig: Noch keine Live-Stellen
+
+Die zwölf Stellen in `app.js` sind vollständig erfundene Beispieldaten. Sie dienen ausschließlich dazu, Design, Suche und Filter zu testen. Es gibt noch keinen Live-Feed und keine echte Bewerbungsfunktion. Erst nach Anbindung einer rechtmäßig nutzbaren Datenquelle oder echter Arbeitgeberanzeigen dürfen reale Stellen veröffentlicht werden.
+
+## Bestehendes GitHub-/Cloudflare-Projekt aktualisieren
 
 1. ZIP entpacken.
-2. `index.html` im Browser öffnen.
+2. Im bestehenden GitHub-Repository `jobimo-website` die bisherigen Dateien `index.html`, `styles.css`, `app.js`, `README.md` und `schema.sql` durch die gleichnamigen Dateien aus diesem Paket ersetzen.
+3. Die Dateien im Repository-Hauptverzeichnis ablegen (nicht den übergeordneten ZIP-Ordner als zusätzliche Unterebene hochladen).
+4. Änderungen committen. Cloudflare Pages/Workers kann anschließend wie bisher aus dem bestehenden Projekt aktualisieren.
 
-Es wird kein Build-Schritt benötigt. Für lokale Entwicklung kann auch ein einfacher HTTP-Server verwendet werden.
+Die bestehende Cloudflare-Konfiguration und das GitHub-Repository müssen dafür nicht neu angelegt werden. Keine Zugangsschlüssel oder Secrets in diese Website-Dateien eintragen.
 
-## Was funktioniert?
+## Supabase-Hinweis
 
-- Suchfeld für Tätigkeiten und Jobbegriffe
-- Ortsfilter für ausgewählte Städte in Mecklenburg-Vorpommern
-- Filter für Beschäftigungsart und Branche
-- Trennung zwischen direkten Treffern und ähnlichen Branchen
-- Branchen-Schnellzugriffe
-- Responsive Darstellung für Smartphones
+`schema.sql` ist für eine neue Datenbank ausgelegt und begrenzt die vorgesehenen Beschäftigungsarten auf `minijob` und `werkstudent` (im Frontend als „Studentenjob“ bezeichnet). Wenn das Schema bereits in deinem bestehenden Supabase-Projekt ausgeführt wurde, diese Datei nicht einfach erneut ausführen: `CREATE TABLE IF NOT EXISTS` ändert vorhandene Tabellen-Constraints nicht. Vor einer Datenbankmigration zuerst den aktuellen Tabellenstand und vorhandene Datensätze prüfen.
 
-## Wichtige Einschränkung
-
-Alle enthaltenen Stellen, Unternehmen und Konditionen sind ausdrücklich erfundene Beispieldaten. Die Karten haben keine Bewerbungslinks. Es gibt noch keine Live-Datenbank, keine Arbeitgeberkonten und keine KI-API. Die Suchlogik im Browser ist eine regelbasierte Demonstration, kein echtes KI-Modell.
-
-## Nächster Entwicklungsschritt
-
-Supabase-Datenbank und Admin-Oberfläche anbinden, danach nur rechtmäßig bereitgestellte Stellenquellen und Arbeitgeber-Einreichungen integrieren. Vor dem öffentlichen kommerziellen Betrieb Hosting-, Datenschutz-, Impressums- und Datenlizenzfragen prüfen.
-
-## Datenbank-Vorbereitung
-
-`schema.sql` enthält ein erstes Supabase-PostgreSQL-Schema für Arbeitgeber, Kategorien, verwandte Kategorien, Quellen und Stellen. Es erlaubt öffentlichen Nutzern nur das Lesen aktiver, veröffentlichter Stellen. Öffentliche Schreibrechte sind absichtlich nicht eingerichtet; Arbeitgeber-Einreichungen benötigen später eine validierte, geschützte Schnittstelle.
+Der Supabase-Service-Role-Key darf niemals im Browsercode stehen. Öffentliche Schreibrechte sind nicht eingerichtet.
