@@ -1,43 +1,57 @@
-# JOBIMO – Nebenjob-Plattform (MVP)
+# JOBIMO – Website-MVP
 
-**Positionierung:** „Finde deinen richtigen Nebenjob.“  
-**Jobarten:** Minijobs und Studentenjobs (gleichberechtigt).  
-**Startregion:** Mecklenburg-Vorpommern; später schrittweise deutschlandweit.
+**Positionierung:** Minijobs und Studentenjobs gleichberechtigt  
+**Startgebiet:** Mecklenburg-Vorpommern; später schrittweise deutschlandweit
 
-## Inhalt
+## Dateien
 
-- `index.html` – Startseite und Suchoberfläche
-- `styles.css` – Gestaltung und responsive Darstellung
-- `app.js` – Such- und Filterlogik mit ausdrücklich gekennzeichneten Beispieldaten
-- `schema.sql` – Supabase-Grundschema für eine neue Datenbank
+- `index.html` – Startseite, Suche und Filter
+- `styles.css` – Gestaltung und mobile Darstellung
+- `app.js` – Suche, Filter, Beispieldaten und optionaler Live-Abruf
+- `supabase-config.js` – öffentliche Supabase-Projekt-URL und öffentlicher anon-/publishable-Key
+- `schema.sql` – Grundschema für eine komplett neue Supabase-Datenbank
+- `supabase/migrations/20261117_public_jobs_view.sql` – sichere Leseschnittstelle für ein bereits bestehendes Supabase-Projekt
+
+## Was funktioniert?
+
+- Minijobs und Studentenjobs sind gleichberechtigt dargestellt.
+- Suche nach Stichwort und Stadt.
+- Filter nach Jobart und Branche.
+- Mobile und Desktop-Ansicht.
+- Wenn Supabase konfiguriert ist, lädt die Website freigegebene Stellen aus `public_jobs`.
+- Wenn Supabase noch nicht konfiguriert ist, werden klar gekennzeichnete Beispieldaten angezeigt.
+- Live-Stellen verlinken auf die hinterlegte Bewerbungsseite.
+
+## Supabase für das bestehende Projekt verbinden
+
+1. Öffne dein bestehendes Projekt im Supabase-Dashboard.
+2. Öffne den **SQL Editor**.
+3. Öffne die Datei `supabase/migrations/20261117_public_jobs_view.sql`, kopiere den gesamten Inhalt in den SQL Editor und führe ihn aus.
+4. Öffne `supabase-config.js`.
+5. Trage dort deine Supabase Project URL und den öffentlichen anon-/publishable-Key ein. Du findest beides in den API-Einstellungen deines Supabase-Projekts.
+6. Speichere die Datei und veröffentliche die Änderungen über dein bestehendes GitHub-/Hosting-Projekt.
+
+**Wichtig:** Verwende ausschließlich den öffentlichen anon-/publishable-Key. Der `service_role`- oder ein anderer Secret-Key darf niemals in `supabase-config.js`, `app.js` oder sonstigen Browserdateien stehen.
+
+## Datenbank-Hinweis
+
+`schema.sql` ist nur für eine neue Datenbank gedacht. Da das JOBIMO-Supabase-Projekt bereits Tabellen besitzt, führe `schema.sql` nicht erneut aus. Verwende für dieses Update nur die separate Migration unter `supabase/migrations/`.
+
+Die Migration stellt eine öffentliche Leseschnittstelle bereit. Sie veröffentlicht nur aktive, freigegebene und nicht abgelaufene Jobs und gibt keine Arbeitgeber-E-Mail-Adressen aus.
+
+## Was noch nicht enthalten ist
+
+- Es gibt noch kein Arbeitgeber-Formular, das direkt in Supabase speichert.
+- Es gibt noch keinen Adminbereich zur Freigabe von Stellen.
+- Neue Jobs müssen derzeit über einen gesicherten Admin-/Serverprozess in die Datenbank eingetragen und auf `active` gesetzt werden.
+- Es gibt noch keinen automatischen Job-Feed. Nur Anzeigen, für die eine rechtmäßige Veröffentlichungsgrundlage besteht, dürfen übernommen werden.
+
+Öffentliche Schreibzugriffe und der Supabase-Service-Role-Key im Browser sind ausdrücklich nicht vorgesehen.
 
 ## Lokal testen
 
-ZIP entpacken und `index.html` im Browser öffnen. Es ist kein Build-Schritt erforderlich.
+Die `index.html` kann im Browser geöffnet werden. Für den Live-Abruf sollte die Website über deinen normalen Hosting-Anbieter bereitgestellt werden, damit externe Skripte und die Supabase-Verbindung zuverlässig geladen werden.
 
-## Funktionen im aktuellen Prototyp
+## Bestehendes GitHub-Projekt aktualisieren
 
-- Gleichberechtigte Auswahl von Minijobs und Studentenjobs
-- Suche nach Tätigkeit, Stichwort und Stadt
-- Filter nach Jobart und Branche
-- Regionale Vorauswahl für Städte in Mecklenburg-Vorpommern
-- Responsive Darstellung für Smartphone und Desktop
-
-## Wichtig: Noch keine Live-Stellen
-
-Die zwölf Stellen in `app.js` sind vollständig erfundene Beispieldaten. Sie dienen ausschließlich dazu, Design, Suche und Filter zu testen. Es gibt noch keinen Live-Feed und keine echte Bewerbungsfunktion. Erst nach Anbindung einer rechtmäßig nutzbaren Datenquelle oder echter Arbeitgeberanzeigen dürfen reale Stellen veröffentlicht werden.
-
-## Bestehendes GitHub-/Cloudflare-Projekt aktualisieren
-
-1. ZIP entpacken.
-2. Im bestehenden GitHub-Repository `jobimo-website` die bisherigen Dateien `index.html`, `styles.css`, `app.js`, `README.md` und `schema.sql` durch die gleichnamigen Dateien aus diesem Paket ersetzen.
-3. Die Dateien im Repository-Hauptverzeichnis ablegen (nicht den übergeordneten ZIP-Ordner als zusätzliche Unterebene hochladen).
-4. Änderungen committen. Cloudflare Pages/Workers kann anschließend wie bisher aus dem bestehenden Projekt aktualisieren.
-
-Die bestehende Cloudflare-Konfiguration und das GitHub-Repository müssen dafür nicht neu angelegt werden. Keine Zugangsschlüssel oder Secrets in diese Website-Dateien eintragen.
-
-## Supabase-Hinweis
-
-`schema.sql` ist für eine neue Datenbank ausgelegt und begrenzt die vorgesehenen Beschäftigungsarten auf `minijob` und `werkstudent` (im Frontend als „Studentenjob“ bezeichnet). Wenn das Schema bereits in deinem bestehenden Supabase-Projekt ausgeführt wurde, diese Datei nicht einfach erneut ausführen: `CREATE TABLE IF NOT EXISTS` ändert vorhandene Tabellen-Constraints nicht. Vor einer Datenbankmigration zuerst den aktuellen Tabellenstand und vorhandene Datensätze prüfen.
-
-Der Supabase-Service-Role-Key darf niemals im Browsercode stehen. Öffentliche Schreibrechte sind nicht eingerichtet.
+Die Dateien aus dem ZIP in das Hauptverzeichnis deines bestehenden Website-Repositories kopieren und gleichnamige Dateien ersetzen. Den Ordner `supabase/migrations/` mit hochladen. Danach Änderungen committen. Das bestehende Repository und Hosting-Projekt müssen nicht neu angelegt werden.
