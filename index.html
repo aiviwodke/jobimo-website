@@ -73,12 +73,13 @@
       <label>Name / Unternehmensname
         <input id="signupName" type="text" required>
       </label>
-      <label>Kontoart
-        <select id="signupType">
-          <option value="private">Privatperson</option>
-          <option value="company">Unternehmen</option>
-        </select>
-      </label>
+     <label>Wie möchtest du JOBIMO nutzen?
+  <select id="signupType" required>
+    <option value="jobseeker">Ich suche einen Job</option>
+    <option value="company">Ich bin Arbeitgeber – Unternehmen</option>
+    <option value="private_employer">Ich bin Arbeitgeber – Privatperson</option>
+  </select>
+</label>
       <label>E-Mail-Adresse
         <input id="signupEmail" type="email" required>
       </label>
