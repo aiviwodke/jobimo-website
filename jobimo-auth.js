@@ -63,11 +63,10 @@ document.getElementById("signedInType").textContent =
 
 
     showMessage(
-      error
-        ? "Du bist angemeldet. Dein Profil konnte gerade nicht geladen werden."
-        : "Du bist erfolgreich angemeldet."
-    );
-  }
+  error
+    ? "Profilfehler: " + error.message
+    : "Du bist erfolgreich angemeldet."
+);
 
   signupForm.addEventListener("submit", async (event) => {
     event.preventDefault();
