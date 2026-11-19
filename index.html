@@ -55,6 +55,58 @@
     <section class="how-section" id="so-funktionierts"><div class="section-intro"><span class="eyebrow">EINFACHER GEHT'S NICHT</span><h2>Weniger suchen.<br><span>Mehr Möglichkeiten.</span></h2></div><div class="steps"><article><div class="step-icon lilac">⌕</div><span class="step-no">01</span><h3>Finde passende Jobs.</h3><p>Suche nach Tätigkeit, Jobart und Ort – ganz unkompliziert.</p></article><article><div class="step-icon peach">✳</div><span class="step-no">02</span><h3>Vergleiche deine Optionen.</h3><p>Sieh auf einen Blick, welche Aufgaben, Arbeitszeiten und Branchen zu dir passen.</p></article><article><div class="step-icon mint">↗</div><span class="step-no">03</span><h3>Bewirb dich direkt.</h3><p>Der Weg zur Bewerbung führt dich zur Originalanzeige oder zum Arbeitgeber.</p></article></div></section>
 
     <section class="industry-section" id="branchen"><div class="section-intro"><span class="eyebrow">DEIN STARTPUNKT</span><h2>Dein Bereich. Dein Nebenjob.</h2><p>Entdecke beliebte Branchen für Minijobs und Studentenjobs.</p></div><div class="industry-grid"><button type="button" data-query="Gastronomie" class="industry-card cafe"><span>☕</span><b>Gastronomie</b><small>Café, Bar und Restaurant</small></button><button type="button" data-query="Hotel" class="industry-card hotel"><span>🛎️</span><b>Hotellerie</b><small>Empfang und Gästeservice</small></button><button type="button" data-query="Verkauf" class="industry-card service"><span>🛍️</span><b>Einzelhandel</b><small>Shop, Kasse und Verkauf</small></button><button type="button" data-query="Büro" class="industry-card retail"><span>💻</span><b>Büro & Verwaltung</b><small>Organisation und Support</small></button></div></section>
+<section class="account-section" id="konto">
+  <div class="account-intro">
+    <span class="eyebrow">DEIN JOBIMO-KONTO</span>
+    <h2>Ein Konto. Viele Möglichkeiten.</h2>
+    <p>Registriere dich als Unternehmen oder Privatperson.</p>
+    <p>Alle Stellenanzeigen werden vor der Veröffentlichung von JOBIMO geprüft.</p>
+  </div>
+
+  <div id="accountStatus" class="account-status">
+    Du bist noch nicht angemeldet.
+  </div>
+
+  <div id="accountForms" class="account-forms">
+    <form id="signupForm" class="account-card">
+      <h3>Neu bei JOBIMO?</h3>
+      <label>Name / Unternehmensname
+        <input id="signupName" type="text" required>
+      </label>
+      <label>Kontoart
+        <select id="signupType">
+          <option value="private">Privatperson</option>
+          <option value="company">Unternehmen</option>
+        </select>
+      </label>
+      <label>E-Mail-Adresse
+        <input id="signupEmail" type="email" required>
+      </label>
+      <label>Passwort
+        <input id="signupPassword" type="password" minlength="8" required>
+      </label>
+      <button type="submit">Konto erstellen ↗</button>
+    </form>
+
+    <form id="loginForm" class="account-card">
+      <h3>Schon registriert?</h3>
+      <label>E-Mail-Adresse
+        <input id="loginEmail" type="email" required>
+      </label>
+      <label>Passwort
+        <input id="loginPassword" type="password" required>
+      </label>
+      <button type="submit">Anmelden ↗</button>
+    </form>
+  </div>
+
+  <div id="signedInPanel" hidden>
+    <h3 id="signedInName">Willkommen bei JOBIMO!</h3>
+    <p id="signedInEmail"></p>
+    <p id="signedInType"></p>
+    <button id="logoutButton" type="button">Abmelden</button>
+  </div>
+</section>
 
     <section class="employer-section" id="arbeitgeber"><div><span class="eyebrow">DU SUCHST VERSTÄRKUNG?</span><h2>Finde passende<br><span>Aushilfen & Studierende.</span></h2><p>Du möchtest einen Minijob oder Studentenjob anbieten? Jobimo soll auch Arbeitgeber und passende Bewerber unkompliziert zusammenbringen.</p></div><a class="employer-button" href="mailto:hallo@jobimo.de?subject=Interesse%20an%20einer%20Stellenanzeige">Interesse als Arbeitgeber? <span>↗</span></a></section>
   </main>
