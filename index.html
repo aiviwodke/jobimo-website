@@ -108,6 +108,67 @@
     <button id="logoutButton" type="button">Abmelden</button>
   </div>
 </section>
+<section class="account-section" id="arbeitgeberDashboard" hidden>
+  <div class="account-intro">
+    <span class="eyebrow">ARBEITGEBERBEREICH</span>
+    <h2>Deine Stellenanzeigen.</h2>
+    <p>Erstelle neue Minijobs und Studentenjobs und reiche sie zur Prüfung ein.</p>
+    <p>Deine Anzeigen werden erst nach persönlicher Freigabe durch JOBIMO veröffentlicht.</p>
+  </div>
+
+  <form id="submitJobForm" class="account-card">
+    <h3>Neue Stellenanzeige erstellen</h3>
+
+    <label>Stellentitel
+      <input id="jobTitle" type="text" required>
+    </label>
+
+    <label>Art der Beschäftigung
+      <select id="jobType" required>
+        <option value="minijob">Minijob</option>
+        <option value="studentenjob">Studentenjob</option>
+      </select>
+    </label>
+
+    <label>Unternehmen / Arbeitgeber
+      <input id="jobCompany" type="text" required>
+    </label>
+
+    <label>Kategorie
+      <input id="jobCategory" type="text">
+    </label>
+
+    <label>Beschreibung
+      <textarea id="jobDescription" required></textarea>
+    </label>
+
+    <label>Arbeitsort
+      <input id="jobLocation" type="text" required>
+    </label>
+
+    <label>Vergütung
+      <input id="jobSalary" type="text">
+    </label>
+
+    <label>Arbeitszeiten
+      <input id="jobHours" type="text">
+    </label>
+
+    <label>Kontakt-E-Mail
+      <input id="jobContactEmail" type="email" required>
+    </label>
+
+    <button type="submit">Stellenanzeige zur Prüfung einreichen ↗</button>
+  </form>
+
+  <div id="jobSubmitStatus" class="account-status"></div>
+
+  <div>
+    <h3>Meine Stellenanzeigen</h3>
+    <div id="employerJobs"></div>
+  </div>
+</section>
+
 
    <section class="employer-section" id="arbeitgeber">
   <div>
