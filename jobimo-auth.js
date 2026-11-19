@@ -51,10 +51,16 @@
       "Willkommen bei JOBIMO, " +
       (profile?.display_name || "Nutzer") + "!";
 
-    document.getElementById("signedInType").textContent =
-      profile?.account_type === "company"
-        ? "Kontoart: Unternehmen"
-        : "Kontoart: Privatperson";
+    const accountLabels = {
+  jobseeker: "Kontoart: Jobsuchender",
+  company: "Kontoart: Arbeitgeber – Unternehmen",
+  private_employer: "Kontoart: Arbeitgeber – Privatperson",
+  private: "Kontoart: Privatperson"
+};
+
+document.getElementById("signedInType").textContent =
+  accountLabels[profile?.account_type] || "Kontoart: Privatperson";
+
 
     showMessage(
       error
