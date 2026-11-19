@@ -155,4 +155,133 @@ document.getElementById("signedInType").textContent =
   jobimoAuthClient.auth.getSession().then(({ data }) => {
     updateAccountView(data.session);
   });
+   // JOBIMO: Arbeitgeber-Dashboard und Stellenanzeigen
+
+  const employerDashboard = document.getElementById("arbeitgeberDashboard");
+  const submitJobForm = document.getElementById("submitJobForm");
+  const jobSubmitStatus = document.getElementById("jobSubmitStatus");
+  const employerJobs = document.getElementById("employerJobs");
+
+  async function loadEmployerDashboard(session) {
+    if (!employerDashboard) return;
+
+    if (!session) {
+      employerDashboard.hidden = true;
+      return;
+    }
+
+    const { data: profile } = await jobimoAuthClient
+      .from("profiles")
+      .select("account_type, display_name, contact_email")
+      .eq("id", session.user.id)
+      .maybeSingle();
+
+    const isEmployer =
+      profile?.account_type === "company" ||
+      profile?.account_type === "private_employer";
+
+    employerDashboard.hidden = !isEmployer;
+
+    if (!isEmployer) return;
+
+    document.getElementById("jobCompany").value =
+      profile?.display_name || "";
+
+    document.getElementById("jobContactEmail").value =
+      profile?.contact_email || session.user.email || "";
+
+    await loadEmployerJobs(session.user.id);
+  }
+
+  async function loadEmployerJobs(userId) {
+    const { data, error } = await jobimoAuthClient
+      .from("jobs")
+      .select("title, status, created_at")
+      .eq("employer_id", userId)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      employerJobs.textContent = "Deine Anzeigen konnten nicht geladen werden.";
+      return;
+    }
+
+    employerJobs.replaceChildren();
+
+    if (!data || data.length === 0) {
+      employerJobs.textContent = "Du hast noch keine Stellenanzeigen eingereicht.";
+      return;
+    }
+
+    data.forEach((job) => {
+      const item = document.createElement("p");
+      const statusLabels = {
+        pending: "Wird von JOBIMO geprüft",
+        approved: "Freigegeben",
+        rejected: "Abgelehnt"
+      };
+
+      item.textContent =
+        job.title + " – " + (statusLabels[job.status] || job.status);
+
+      employerJobs.appendChild(item);
+    });
+  }
+
+  if (submitJobForm) {
+    submitJobForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const { data: sessionData } =
+        await jobimoAuthClient.auth.getSession();
+
+      const session = sessionData.session;
+
+      if (!session) {
+        jobSubmitStatus.textContent =
+          "Bitte melde dich zuerst an.";
+        return;
+      }
+
+      const button = submitJobForm.querySelector('button[type="submit"]');
+      button.disabled = true;
+      jobSubmitStatus.textContent = "Deine Anzeige wird eingereicht ...";
+
+      const { error } = await jobimoAuthClient.from("jobs").insert({
+        employer_id: session.user.id,
+        title: document.getElementById("jobTitle").value.trim(),
+        company_name: document.getElementById("jobCompany").value.trim(),
+        job_type: document.getElementById("jobType").value,
+        category: document.getElementById("jobCategory").value.trim(),
+        description: document.getElementById("jobDescription").value.trim(),
+        location: document.getElementById("jobLocation").value.trim(),
+        salary: document.getElementById("jobSalary").value.trim(),
+        working_hours: document.getElementById("jobHours").value.trim(),
+        contact_email: document.getElementById("jobContactEmail").value.trim(),
+        status: "pending"
+      });
+
+      button.disabled = false;
+
+      if (error) {
+        jobSubmitStatus.textContent =
+          "Fehler beim Einreichen: " + error.message;
+        return;
+      }
+
+      submitJobForm.reset();
+      jobSubmitStatus.textContent =
+        "Erfolgreich eingereicht! Deine Anzeige wird jetzt von JOBIMO geprüft.";
+
+      await loadEmployerJobs(session.user.id);
+    });
+  }
+
+  jobimoAuthClient.auth.onAuthStateChange((_event, session) => {
+    loadEmployerDashboard(session);
+  });
+
+  jobimoAuthClient.auth.getSession().then(({ data }) => {
+    loadEmployerDashboard(data.session);
+  });
+
 })();
